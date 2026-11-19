@@ -1,5 +1,5 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
+import { defineConfig, defaultClientConditions } from 'vite';
 import { resolveBuildInfo } from './scripts/build-info.js';
 
 import { viteStaticCopy } from 'vite-plugin-static-copy';
@@ -9,7 +9,7 @@ const buildInfo = resolveBuildInfo();
 
 export default defineConfig({
 	resolve: {
-		conditions: ['onnxruntime-web-use-extern-wasm']
+		conditions: [...defaultClientConditions, 'onnxruntime-web-use-extern-wasm']
 	},
 	plugins: [
 		sveltekit(),
